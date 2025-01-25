@@ -9,7 +9,7 @@ TEST(MathTests, AddFunction) {
     EXPECT_EQ(add(2, 2), 4);
     EXPECT_EQ(add(-1, 1), 0);
     EXPECT_NE(add(2, 2), 5);
-    EXPECT_EQ(add(2, 2), 5);
+    EXPECT_EQ(add(2, 3), 5);
 }
 
 // Standard main provided by gtest_main link library
