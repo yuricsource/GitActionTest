@@ -1,0 +1,38 @@
+name: CMake Build and Test
+
+# Run on push and pull_request events, on all branches or specific ones.
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # If you need a specific version of cmake, you could use a separate action
+    # - name: Install CMake
+    #   uses: twilio/cmake-install@v1
+    #   with:
+    #     cmake-version: '3.20.0'
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+    
+    - name: Build
+      run: |
+        cd build
+        cmake --build .
+    
+    - name: Run tests
+      run: |
+        cd build
+        ctest --output-on-failure
